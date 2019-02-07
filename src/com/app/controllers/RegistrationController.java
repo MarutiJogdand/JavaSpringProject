@@ -1,4 +1,6 @@
 package com.app.controllers;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,13 @@ public class RegistrationController {
   @RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
   public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
   @ModelAttribute("user") com.app.pojos.User user) {
-  userService.register(user);
-  return new ModelAndView("welcome", "firstname", user.getFirstname());
+	  
+	  ModelAndView mav = null;
+	  mav = new ModelAndView("welcome");
+	  userService.register(user);
+	  List<User> users = userService.getAllUsers();
+	  mav.addObject("users", users);
+	  mav.addObject("firstname", user.getFirstname());
+	  return mav;
   }
 }

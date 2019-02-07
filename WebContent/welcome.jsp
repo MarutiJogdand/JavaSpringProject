@@ -9,34 +9,42 @@
     </head>
     <body>
         <table>
-            <tr>
-                <td>Welcome ${firstname}</td>
-            </tr>
-                
-            <tr>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
+        	 <tr>
                 <td><a href="home.jsp">Home</a></td>
                 <td><a href="getUsers">Get Users</a></td>
             </tr>
+            <tr>
+            	<td><br></td>
+            	<td><br></td>
+            	<td><br></td>
+            </tr>
+            <tr>
+                <td>Welcome ${firstname}</td>
+            </tr>
+
         </table>
-        
-        <table>
+        <br>
+        <br>
+        <br>
+        <h4>List Of Exiting Users</h4>
+        <table border="1px">
         	<thead>
         		<tr>
-        			<th>Existing Users in database</th>
+        			<th>User Name</th>
+        			<th>First Name</th>
+        			<th>Last Name</th>
+        			<th>Email ID</th>
         		</tr>
         	</thead>
         	<tbody>
+        	<c:forEach items="${users}" var="item">
         		<tr>
-        			<td>
-        				<c:forEach items="${users}" var="item">
-    						user: ${item.getUsername()}<br>
-						</c:forEach>
-        			</td>
+        			<td>${item.getUsername()}</td>
+    				<td>${item.getFirstname()}</td>
+    				<td>${item.getLastname()}</td>
+    				<td>${item.getEmail()}</td>
         		</tr>
+        	</c:forEach>
         	</tbody>
         </table>
         
